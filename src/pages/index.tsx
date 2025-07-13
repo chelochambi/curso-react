@@ -1,4 +1,4 @@
-// src/pages/categorias.tsx
+// src/pages/index.tsx
 import { useEffect, useState } from "react";
 import {
   Card,

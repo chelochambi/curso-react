@@ -3,6 +3,8 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import { Button } from "@mui/material";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+import { useCarrito } from "@/context/CarritoContext";
+
 import {
   Grid,
   Card,
@@ -27,6 +29,8 @@ const DEFAULT_LIMIT = 6;
 const ProductosPorCategoriaPage = () => {
   const router = useRouter();
   const { slug } = router.query;
+  const { agregarAlCarrito } = useCarrito();
+
 
   const [productos, setProductos] = useState<Producto[]>([]);
   const [loading, setLoading] = useState(false);

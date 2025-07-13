@@ -3,14 +3,9 @@ import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import Rating from "@mui/material/Rating"; // ⭐ NUEVO
-import {
-  Box,
-  Typography,
-  CardMedia,
-  Skeleton,
-  Button,
-} from "@mui/material";
+import { Box, Typography, CardMedia, Skeleton, Button } from "@mui/material";
 import MainLayout from "@/components/layouts/MainLayout";
+import { useCarrito } from "@/context/CarritoContext";
 
 type Producto = {
   id: number;
@@ -30,6 +25,7 @@ const DetalleProductoPage = () => {
 
   const [producto, setProducto] = useState<Producto | null>(null);
   const [loading, setLoading] = useState(false);
+  const { agregarAlCarrito } = useCarrito();
 
   useEffect(() => {
     if (!id || typeof id !== "string") return;
@@ -155,15 +151,13 @@ const DetalleProductoPage = () => {
               </Typography>
 
               <Button
+                fullWidth
                 variant="contained"
                 color="primary"
-                size="large"
                 sx={{ mt: 2 }}
-                onClick={() => {
-                  alert("Producto agregado al carrito (simulado)");
-                }}
+                onClick={() => agregarAlCarrito(producto)}
               >
-                Agregar al carrito
+                Añadir al carrito
               </Button>
             </Box>
           </Box>
